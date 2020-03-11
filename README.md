@@ -1,1 +1,1 @@
-# juyeongkang.github.io
+# Art class 
