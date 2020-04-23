@@ -30,13 +30,11 @@ function draw() {
   fill(skinDark);
   ellipse(199, 210, 80, 100);
   
- 
   fill(skinMed);
   ellipse(199, 170, 120, 160);
   
   ellipse(138, 173, 20, 40);
   ellipse(260, 173, 20, 40);
-  
   
   noStroke();
   fill(skinLight);
@@ -48,8 +46,6 @@ function draw() {
   ellipse(190, 100, 100, 50);
   quad(145, 180, 155, 100, 141, 100, 137, 150);
   quad(120, 160, 170, 160, 170, 110, 140, 100);
-  
-  
   
   fill(black);
   ellipse(175, 173, 10, 12);
