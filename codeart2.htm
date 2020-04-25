@@ -4,23 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web:700,900" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Portfolio</title>
 </head>
 
 <body>
     <header>
-        <!--Navbar-->
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
             <div class="container">
                 <a class="navbar-brand" href="index.htm">Home</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-7" aria-controls="navbarSupportedContent-7" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
+                    <span class="navbar-toggler-icon"></span>
+                </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent-7">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
@@ -51,50 +54,88 @@
                 </div>
             </div>
         </nav>
-        <!-- Navbar -->
-        <!-- Full Page Intro -->
         <div class="view" style="background-image: url('img/3.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
-            <!-- Mask & flexbox options-->
-            <div class="mask rgba-black-light align-items-center">
-                <!-- Content -->
-                <div class="container">
-                    <!--Grid row-->
-                    <div class="row">
-                        <!--Grid column-->
-                        <div class="col-md-12 mb-4 white-text text-center">
-                            <br>
-                            <br>
-                            <h1 class="h1-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 wow fadeInDown" data-wow-delay="0.3s"><strong>Juyeong Kang</strong></h1>
-                            <hr class="hr-light my-4 wow fadeInDown" data-wow-delay="0.4s">
-                            <h5 class="text-uppercase mb-4 white-text wow fadeInDown" data-wow-delay="0.4s"><strong>digital media art</strong></h5>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-
-                            <div class="container1">
-                                <p style="background-color: #F6B6B4;">Hello! My name is Juyeong Kang. I am currently a international student at San Jose State University, majoring in Digital Media Artist. </p>
-                                <p style="background-color: #F6B6B4;">Humans think in a higher dimension and determine what is beautiful and what is not. </p>
-                                <p style="background-color: #F6B6B4;">It's a special ability that only humans have. For this reason. </p>
-                                <p style="background-color: #F6B6B4;">The importance of design is an important factor for humans.</p>
-                            </div>
-
-                        </div>
-                        <!--Grid column-->
+            <div class="container2">
+                <div class="row row-cols-1 text-center">
+                    <<h2></<h2><strong>Code Art2</strong></h2>
+                    <div class="container3">
+                        <p2>Self portraits expression using p5.js coding</p2>
                     </div>
-                    <!--Grid row-->
+                    <div class="container-fluid"><iframe src="art3/index.htm" width="604px" height="604px"></iframe>
+                        <pre>
+            var imgX = 40;
+            var imgY = 40;
+            var imgSize = 140;
+            var score =0;
+            var gameState = "L1";
+            
+            function preload() {
+              img = loadImage('https://juyeongkang.github.io/virus.png');
+              img2 = loadImage('https://juyeongkang.github.io/Mutate.png');
+            }
+            
+            function setup() {
+              createCanvas(600, 600);
+              textAlign(CENTER);
+              textSize(20);
+            } // end setup
+            
+            
+            function draw() {
+              background(150,75,0);
+              if(gameState == "L1"){
+                levelOne();
+              }
+              if(gameState == "L2"){
+                 levelTwo();
+              }
+              
+              text(("Kill Point: " + score), width/2, 40);
+              
+            
+            } // end draw
+            
+            
+            function levelOne(){
+              text("COVID-19", width/2, height-20);
+              var distToImg= dist(imgX, imgY, mouseX, mouseY);
+              if (distToImg <imgSize/2){
+                imgX = random(width);
+                imgY= random(height);
+                score= score +1;
+              }
+              if(score>10){
+                 gameState = "L2";
+              }
+              
+              
+              image(img, imgX, imgY, 50, 50);
+            } // end level one
+            
+            
+            function levelTwo(){
+               background(80,80,80);
+              text("Mutant COVID-19", width/2, height-20);
+              var distToImg2= dist(imgX, imgY, mouseX, mouseY);
+              if (distToImg2 <imgSize/2){
+                imgX = random(width);
+                imgY= random(height);
+                score= score +1;
+              }
+              if(score>20){
+            
+              fill(random(255));
+              }
+              
+              
+              image(img2, imgX, imgY, 100, 100);
+            } // end level Two
+            
+         </pre>
+                    </div>
                 </div>
-                <!-- Content -->
             </div>
-            <!-- Mask & flexbox options-->
         </div>
-        <!-- Full Page Intro -->
     </header>
 </body>
 
