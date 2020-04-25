@@ -54,71 +54,120 @@
         <div class="view" style="background-image: url('img/3.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
             <div class="container2">
                 <div class="row row-cols-1 text-center">
-                    <<h2></<h2><strong>Code Art</strong></h2>
+                    <<h2></<h2><strong>DIY PHOTOSHOP</strong></h2>
                     <div class="container3">
-                        <p2>Self portraits expression using p5.js coding</p2>
+                        <p2> If anyone likes Van Gogh's starry night, people can draw a starry night in their own way using my p5 tool.</p2>
                     </div>
-                    <div class="container-fluid"><iframe src="self/index.htm" width="404px" height="404px"></iframe>
-                        <pre>
-function setup() {
-createCanvas(400, 400);
+                    <div class="col"><iframe src="art2/index.htm" width="610px" height="610px"></iframe></div>
+                    <div class="container-fluid">
+                        <pre style="white-space:pre-wrap;">var img;
+var initials ='JK'; // your initials
+var choice = '1'; // starting choice, so it is not empty
+var screenbg = 250; // off white background
+var lastscreenshot=61; // last screenshot never taken
+
+function preload() {
+  img = loadImage('https://dma-git.github.io/images/74.png');
+  img2 = loadImage('https://juyeongkang.github.io/house4.jpg');
+  img3 = loadImage('https://juyeongkang.github.io/tower1.jpg');
 }
+
+function setup() {
+createCanvas(600, 600);  // canvas size
+background(255);   // use our background screen color
+
+}
+
 function draw() {
-var skinLight = color(255, 213, 188);
-var skinMed = color(249, 199, 169);
-var skinDark = color(239, 182, 148);
-var hair = color(0, 0, 0);
-var shirt = color(45, 45, 45);
-var black = color(0, 0, 0);
+  if (keyIsPressed) {
+    choice = key; // set choice to the key that was pressed
+    clear_print(); // check to see if it is clear screen or save image
+  }
+  if (mouseIsPressed){
+    newkeyChoice(choice);  // if the mouse is pressed call newkeyChoice
+  }
+}
 
-background(220);
+function newkeyChoice(toolChoice) { //toolchoice is the key that was pressed
 
-noStroke();
-fill(skinMed);
-rect(165, 200, 70, 100);
-fill(shirt);
-rect(115, 275, 170, 130);
-
-fill(shirt);
-ellipse(120, 395, 120, 240);
+ if (toolChoice == '1' ) {  // first tool
+   
+    background(0);
     
-fill(shirt);
-ellipse(280, 395, 120, 240);
+  } else if (toolChoice == '2') { // second tool
 
-fill(skinMed);
-ellipse(199, 275, 70, 60);
-fill(skinDark);
-ellipse(199, 210, 80, 100);
+    stroke(255, 204, 0);
+    line(mouseX, mouseY, pmouseX, pmouseY);
+  } else if (toolChoice == '3') { // third tool
 
-fill(skinMed);
+    ellipseMode(RADIUS); 
+    fill(255); //
+    ellipse(mouseX, mouseY, 40, 40, 30, 30); 
 
-ellipse(199, 170, 120, 160);
-ellipse(138, 173, 20, 40);
-ellipse(260, 173, 20, 40);
+    ellipseMode(CENTER); 
+    noStroke(20)
+    fill(255, 204, 0);
+    ellipse(mouseX, mouseY, 30, 30, 40, 40);
+  } else if (toolChoice == '4') {
 
-noStroke();
-fill(skinLight);
-ellipse(200, 199, 18, 15);
+    stroke(0, 0, 255);
+    line(mouseX, mouseY, pmouseX, pmouseY);
+  } else if (key == '5') { // this tool calls a function
+    stroke(135,206,235);
+    line(mouseX, mouseY, pmouseX, pmouseY);
+    
+  } else if (toolChoice == '6') {
 
-fill(hair);
-quad(265, 215, 160, 80, 258, 87, 260, 140);
+    ellipseMode(RADIUS); 
+    fill(255, 190, 0); //
+    ellipse(mouseX, mouseY, 35, 34, 26, 24); 
 
-ellipse(240, 108, 19, 27);
-ellipse(190, 100, 100, 50);
+    ellipseMode(CENTER); 
+    noStroke(20)
+    fill(255, 204, 0);
+    ellipse(mouseX, mouseY, 30, 30, 40, 40);
+  } else if (toolChoice == '7') {
 
-quad(145, 180, 155, 100, 141, 100, 137, 150);
-quad(120, 160, 170, 160, 170, 110, 140, 100);
+    image(img2, mouseX, mouseY);
+  } else if (toolChoice == '8') {
+    image(img3, mouseX, mouseY);
 
-fill(black);
-ellipse(175, 173, 10, 12);   
-ellipse(225, 173, 10, 12);
+  } else if (toolChoice == '9') {
+    noStroke(20)
+    ellipse(mouseX, mouseY, 53, 46, 55, 55)
+    
+  } else if (toolChoice == '0') {
+    stroke(0, 0);
+    fill(random(255), random(255), random(255), random(255));
+    rect(mouseX, mouseY, 70, 130);
+  } else if (toolChoice == 'g' || toolChoice == 'G') { // g places the image we pre-loaded
+    image(img, mouseX, mouseY);   
+  }
+ }
+ 
+function testbox(r, g, b) {
+  x = mouseX;
+  y = mouseY;
+  fill(r, g, b);
+  rect(x-50, y-50, 100, 100);
 
-stroke(black);
-strokeWeight(3);
+}
 
-line(182, 159, 160, 160);  
-line(213, 159, 233, 160);
-line(185, 222, 215, 222);
+function clear_print() {
+  if (key == 'x' || key == 'X') {
+    background(255); // set the screen back to the background color
+  } else if (key == 'p' || key == 'P') {
+     saveme();  // call saveme which saves an image of the screen
+  }
+}
+
+function saveme(){
+  filename=initials+day() + hour() + minute() +second();
+  if (second()!=lastscreenshot) { // don't take a screenshot if you just took one
+    saveCanvas(filename, 'jpg');
+  }
+  lastscreenshot=second(); // set this to the current second so no more than one per second
+
 }
                         </pre>
                     </div>
